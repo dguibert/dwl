@@ -1,3 +1,7 @@
+#include <X11/XF86keysym.h>
+#define XF86MonBrightnessDown 0x1008ff03
+#define XF86MonBrightnessUp 0x1008ff02
+
 /* appearance */
 static const int sloppyfocus        = 1;  /* focus follows mouse */
 static const unsigned int borderpx  = 1;  /* border pixel of windows */
@@ -144,6 +148,14 @@ static const Key keys[] = {
 #define CHVT(n) { WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_XF86Switch_VT_##n, chvt, {.ui = (n)} }
 	CHVT(1), CHVT(2), CHVT(3), CHVT(4), CHVT(5), CHVT(6),
 	CHVT(7), CHVT(8), CHVT(9), CHVT(10), CHVT(11), CHVT(12),
+	// for pulse compatible //
+        { 0,                            XF86XK_AudioRaiseVolume, spawn, SHCMD("pamixer --allow-boost -i 3") },
+        { 0,                            XF86XK_AudioLowerVolume, spawn, SHCMD("pamixer --allow-boost -d 3") },
+        { 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
+        { 0,                            XF86XK_AudioMicMute,     spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
+	// brightness control
+        { 0,                            XF86MonBrightnessUp,     spawn, SHCMD("brightnessctl s 5%+") },
+        { 0,                            XF86MonBrightnessDown,   spawn, SHCMD("brightnessctl s 5%-") },
 };
 
 static const Button buttons[] = {
