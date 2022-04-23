@@ -3,8 +3,8 @@ static const int sloppyfocus        = 1;  /* focus follows mouse */
 static const unsigned int borderpx  = 1;  /* border pixel of windows */
 static const int lockfullscreen     = 1;  /* 1 will force focus on the fullscreen window */
 static const float rootcolor[]      = {0.3, 0.3, 0.3, 1.0};
-static const float bordercolor[]    = {0.5, 0.5, 0.5, 1.0};
-static const float focuscolor[]     = {1.0, 0.0, 0.0, 1.0};
+static const float bordercolor[]    = {1.0 * 0x22 / 0xff, 1.0 * 0x22 / 0xff, 1.0 * 0x22 / 0xff, 1.0};
+static const float focuscolor[]     = {1.0 * 0x00 / 0xff, 1.0 * 0x55 / 0xff, 1.0 * 0x77 / 0xff, 1.0};
 /* To conform the xdg-protocol, set the alpha to zero to restore the old behavior */
 static const float fullscreen_bg[]  = {0.1, 0.1, 0.1, 1.0};
 
