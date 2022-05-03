@@ -56,6 +56,16 @@ idle-protocol.c:
 
 idle-protocol.o: idle-protocol.h
 
+net-tapesoftware-dwl-wm-unstable-v1-protocol.h: protocols/net-tapesoftware-dwl-wm-unstable-v1.xml
+	$(WAYLAND_SCANNER) server-header \
+		protocols/net-tapesoftware-dwl-wm-unstable-v1.xml $@
+net-tapesoftware-dwl-wm-unstable-v1-protocol.c: protocols/net-tapesoftware-dwl-wm-unstable-v1.xml
+	$(WAYLAND_SCANNER) private-code \
+		protocols/net-tapesoftware-dwl-wm-unstable-v1.xml $@
+net-tapesoftware-dwl-wm-unstable-v1-protocol.o: net-tapesoftware-dwl-wm-unstable-v1-protocol.h
+dwl.o: net-tapesoftware-dwl-wm-unstable-v1-protocol.h
+dwl: net-tapesoftware-dwl-wm-unstable-v1-protocol.o
+
 config.h: | config.def.h
 	cp config.def.h $@
 
