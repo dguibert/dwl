@@ -615,6 +615,7 @@ closemon(Monitor *m)
 		if (c->mon == m)
 			setmon(c, selmon, c->tags);
 	}
+	printstatus();
 }
 
 void
@@ -1012,6 +1013,15 @@ focusclient(Client *c, int lift)
 		wlr_seat_keyboard_notify_clear_focus(seat);
 		return;
 	}
+
+#ifdef XWAYLAND
+	/* This resolves an issue where the last spawned xwayland client
+	 * receives all pointer activity.
+	 */
+	if (c->type == X11Managed)
+		wlr_xwayland_surface_restack(c->surface.xwayland, NULL,
+				XCB_STACK_MODE_ABOVE);
+#endif
 
 	/* Have a client, so focus its top-level wlr_surface */
 	kb = wlr_seat_get_keyboard(seat);
@@ -2227,11 +2237,11 @@ xytonode(double x, double y, struct wlr_surface **psurface,
 	struct wlr_surface *surface = NULL;
 	Client *c = NULL;
 	LayerSurface *l = NULL;
-	int i;
+	const int *layer;
 	int focus_order[] = { LyrOverlay, LyrTop, LyrFloat, LyrTile, LyrBottom, LyrBg };
 
-	for (i = 0; i < LENGTH(focus_order); i++) {
-		if ((node = wlr_scene_node_at(layers[focus_order[i]], x, y, nx, ny))) {
+	for (layer = focus_order; layer < END(focus_order); layer++) {
+		if ((node = wlr_scene_node_at(layers[*layer], x, y, nx, ny))) {
 			if (node->type == WLR_SCENE_NODE_SURFACE)
 				surface = wlr_scene_surface_from_node(node)->surface;
 			/* Walk the tree to find a node that knows the client */
