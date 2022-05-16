@@ -42,7 +42,7 @@ client_activate_surface(struct wlr_surface *s, int activated)
 	if (wlr_surface_is_xdg_surface(s)
 			&& (surface = wlr_xdg_surface_from_wlr_surface(s))
 			&& surface->role == WLR_XDG_SURFACE_ROLE_TOPLEVEL)
-		wlr_xdg_toplevel_set_activated(surface, activated);
+		wlr_xdg_toplevel_set_activated(surface->toplevel, activated);
 }
 
 static inline void
