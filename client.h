@@ -91,6 +91,17 @@ client_get_title(Client *c)
 	return c->surface.xdg->toplevel->title;
 }
 
+static inline struct wlr_scene_node *
+client_create_node(Client *c)
+{
+#ifdef XWAYLAND
+	if (client_is_x11(c))
+		return wlr_scene_subsurface_tree_create(c->scene, client_surface(c));
+#endif
+
+	return &wlr_scene_xdg_surface_create(c->scene, c->surface.xdg)->node;
+}
+
 static inline int
 client_is_float_type(Client *c)
 {
