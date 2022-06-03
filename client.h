@@ -96,7 +96,7 @@ client_create_node(Client *c)
 {
 #ifdef XWAYLAND
 	if (client_is_x11(c))
-		return wlr_scene_subsurface_tree_create(c->scene, client_surface(c));
+		return &wlr_scene_subsurface_tree_create(c->scene, client_surface(c))->node;
 #endif
 
 	return &wlr_scene_xdg_surface_create(c->scene, c->surface.xdg)->node;

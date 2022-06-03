@@ -1875,13 +1875,13 @@ setup(void)
 
 	/* Initialize the scene graph used to lay out windows */
 	scene = wlr_scene_create();
-	layers[LyrBg] = wlr_scene_tree_create(scene->tree);
-	layers[LyrBottom] = wlr_scene_tree_create(scene->tree);
-	layers[LyrTile] = wlr_scene_tree_create(scene->tree);
-	layers[LyrFloat] = wlr_scene_tree_create(scene->tree);
-	layers[LyrTop] = wlr_scene_tree_create(scene->tree);
-	layers[LyrOverlay] = wlr_scene_tree_create(scene->tree);
-	layers[LyrNoFocus] = wlr_scene_tree_create(scene->tree);
+	layers[LyrBg] = wlr_scene_tree_create(&scene->tree);
+	layers[LyrBottom] = wlr_scene_tree_create(&scene->tree);
+	layers[LyrTile] = wlr_scene_tree_create(&scene->tree);
+	layers[LyrFloat] = wlr_scene_tree_create(&scene->tree);
+	layers[LyrTop] = wlr_scene_tree_create(&scene->tree);
+	layers[LyrOverlay] = wlr_scene_tree_create(&scene->tree);
+	layers[LyrNoFocus] = wlr_scene_tree_create(&scene->tree);
 
 	/* Create a renderer with the default implementation */
 	if (!(drw = wlr_renderer_autocreate(backend)))
