@@ -68,7 +68,7 @@ static const int natural_scrolling = 0;
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *termcmd[] = { "alacritty", NULL };
+static const char *termcmd[] = { "footclient", NULL };
 static const char *menucmd[] = { "dmenu-wl_run", "-i", NULL };
 
 static const Key keys[] = {
