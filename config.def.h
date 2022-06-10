@@ -154,8 +154,8 @@ static const Key keys[] = {
         { 0,                            XF86XK_AudioMute,        spawn, SHCMD("pamixer -t") },
         { 0,                            XF86XK_AudioMicMute,     spawn, SHCMD("pactl set-source-mute @DEFAULT_SOURCE@ toggle") },
 	// brightness control
-        { 0,                            XF86MonBrightnessUp,     spawn, SHCMD("brightnessctl s 1%+") },
-        { 0,                            XF86MonBrightnessDown,   spawn, SHCMD("brightnessctl s 1%-") },
+        { 0,                            XF86MonBrightnessUp,     spawn, SHCMD("brightnessctl s 2%+") },
+        { 0,                            XF86MonBrightnessDown,   spawn, SHCMD("brightnessctl s 2%-") },
 };
 
 static const Button buttons[] = {
