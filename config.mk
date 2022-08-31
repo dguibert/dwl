@@ -10,3 +10,4 @@ MANDIR = $(PREFIX)/share/man
 
 # Uncomment to build XWayland support
 CFLAGS += -DXWAYLAND
+XLIBS=xcb xcb-icccm
