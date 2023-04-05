@@ -173,6 +173,8 @@ static const Key keys[] = {
 	// brightness control
         { 0,                            XF86MonBrightnessUp,     spawn, SHCMD("brightnessctl s 2%+") },
         { 0,                            XF86MonBrightnessDown,   spawn, SHCMD("brightnessctl s 2%-") },
+        // print screen
+        { 0,                            XKB_KEY_Print,           spawn, SHCMD("grim -g \"$(slurp)\" -t png - | wl-copy -t image/png ") },
 };
 
 static const Button buttons[] = {
