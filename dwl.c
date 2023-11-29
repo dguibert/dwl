@@ -956,7 +956,7 @@ createmon(struct wl_listener *listener, void *data)
 	m->pertag = calloc(1, sizeof(Pertag));
 	m->pertag->curtag = m->pertag->prevtag = 1;
 
-	for (i = 0; i <= tagcount; i++) {
+	for (i = 0; i <= TAGCOUNT; i++) {
 		m->pertag->nmasters[i] = m->nmaster;
 		m->pertag->mfacts[i] = m->mfact;
 
