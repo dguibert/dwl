@@ -3013,7 +3013,7 @@ dwl_wm_printstatus_to(Monitor *m, const DwlWmMonitor *mon)
 	focused = focustop(m);
 	znet_tapesoftware_dwl_wm_monitor_v1_send_selected(mon->resource, m == selmon);
 
-	for (int tag = 0; tag<LENGTH(tags); tag++) {
+	for (int tag = 0; tag<TAGCOUNT; tag++) {
 		numclients = state = 0;
 		focused_client = -1;
 		tagmask = 1 << tag;
@@ -3172,8 +3172,8 @@ dwl_wm_bind(struct wl_client *client, void *data,
 
 	wl_resource_set_implementation(resource, &dwl_wm_implementation, NULL, dwl_wm_handle_destroy);
 
-	for (int i = 0; i < LENGTH(tags); i++)
-		znet_tapesoftware_dwl_wm_v1_send_tag(resource, tags[i]);
+	for (int i = 0; i < TAGCOUNT; i++)
+		znet_tapesoftware_dwl_wm_v1_send_tag(resource, i+1);
 	for (int i = 0; i < LENGTH(layouts); i++)
 		znet_tapesoftware_dwl_wm_v1_send_layout(resource, layouts[i].symbol);
 }
